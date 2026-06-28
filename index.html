@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>For Enhle 🌹</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --cream: #fff8fa; --light-pink: #ffe8f0; --rose: #f4a4b5; --rose-deep: #d4547f; 
+  --ink: #2a1a16; --gold: #d7b891;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--cream); color: var(--ink); font-family: 'DM Sans', sans-serif; }
+
+#intro { 
+  position: fixed; inset: 0; background: var(--ink); display: flex; 
+  align-items: center; justify-content: center; z-index: 9999;
+  flex-direction: column; gap: 2rem; transition: all 0.6s ease; opacity: 1; visibility: visible;
+}
+#intro.hide { opacity: 0; visibility: hidden; z-index: -1; }
+
+.intro-text { font-family: 'Cormorant Garamond', serif; color: var(--gold); 
+  font-size: 0.9rem; letter-spacing: 0.3em; text-transform: uppercase; }
+.intro-name { font-family: 'Playfair Display', serif; font-style: italic; 
+  color: var(--cream); font-size: 3rem; }
+.intro-btn { 
+  padding: 0.8rem 2rem; border: 1.5px solid var(--gold); 
+  background: transparent; color: var(--gold); font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem; letter-spacing: 0.12em; border-radius: 999px; 
+  cursor: pointer; transition: all 0.3s;
+}
+.intro-btn:hover { background: var(--gold); color: var(--ink); }
+
+#main-content { opacity: 1; transition: opacity 0.6s; }
+#main-content.hide { opacity: 0; }
+
+.section { padding: 4rem 2rem; max-width: 1000px; margin: 0 auto; }
+.section-title { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; 
+  color: var(--rose-deep); text-align: center; margin-bottom: 2rem; }
+.section-label { font-size: 0.7rem; letter-spacing: 0.4em; text-transform: uppercase; 
+  color: var(--rose-deep); margin-bottom: 1.5rem; }
+
+#hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; 
+  text-align: center; padding: 4rem 2rem; }
+.hero-title { font-family: 'Cormorant Garamond', serif; font-size: 4rem; 
+  color: var(--rose-deep); margin-bottom: 1rem; }
+.hero-sub { font-family: 'Cormorant Garamond', serif; font-style: italic; 
+  font-size: 1.3rem; color: var(--ink); }
+
+#letter { background: var(--light-pink); color: var(--ink); }
+.letter-box { background: rgba(255,255,255,0.6); border: 1px solid rgba(244,164,181,0.2);
+  border-radius: 8px; padding: 2rem; margin: 1.5rem 0; font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem; line-height: 1.9; text-align: center; min-height: 300px; }
+
+#timeline { background: var(--cream); }
+.tl-item { padding: 1.5rem 0; border-bottom: 1px dashed rgba(244,164,181,0.2); 
+  text-align: center; }
+.tl-item:last-child { border: none; }
+.tl-date { font-family: 'Cormorant Garamond', serif; color: var(--rose-deep); 
+  font-size: 0.9rem; }
+.tl-title { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; 
+  color: var(--rose-deep); margin: 0.5rem 0; }
+.tl-excerpt { font-size: 0.95rem; color: #5a3a32; margin: 0.8rem 0; }
+.tl-btn { padding: 0.5rem 1rem; background: transparent; border: 1px solid var(--rose-deep);
+  color: var(--rose-deep); border-radius: 6px; cursor: pointer; font-size: 0.85rem; }
+.tl-btn:hover { background: rgba(244,164,181,0.1); }
+
+#distance { background: var(--light-pink); }
+.distance-box { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 2rem 0; }
+@media(max-width: 768px) { .distance-box { grid-template-columns: 1fr; } }
+.distance-info { text-align: center; }
+.distance-value { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; 
+  color: var(--rose-deep); margin-top: 0.5rem; }
+.map-frame { border-radius: 12px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+.map-frame iframe { width: 100%; height: 300px; border: none; display: block; }
+
+#love { background: var(--ink); color: var(--cream); }
+.love-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+  gap: 1rem; margin: 2rem 0; }
+.love-card { background: rgba(244,164,181,0.08); border: 1px solid rgba(244,164,181,0.15);
+  padding: 1.5rem; border-radius: 8px; text-align: center; }
+.love-num { font-family: 'Cormorant Garamond', serif; color: var(--gold); margin-bottom: 0.5rem; }
+.love-text { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; margin-top: 0.5rem; }
+
+#counter { background: var(--light-pink); padding: 4rem 2rem; text-align: center; }
+.counter-num { font-family: 'Cormorant Garamond', serif; font-size: 5rem; 
+  color: var(--rose-deep); margin: 1rem 0; }
+
+#spotify { background: var(--ink); }
+.spotify-box { max-width: 600px; margin: 2rem auto; border-radius: 12px; overflow: hidden; text-align: center; }
+.music-playing { color: var(--cream); font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; margin: 1.5rem 0; }
+
+#quiz { background: var(--cream); }
+.quiz-container { max-width: 700px; margin: 2rem auto; }
+.quiz-question { background: var(--light-pink); border: 1px solid rgba(244,164,181,0.2);
+  border-radius: 10px; padding: 1.5rem; margin-bottom: 1.5rem; }
+.quiz-q-text { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; 
+  color: var(--rose-deep); margin-bottom: 1rem; }
+.quiz-options { display: flex; flex-direction: column; gap: 0.8rem; }
+.quiz-option { padding: 0.8rem 1rem; background: white; border: 1.5px solid rgba(244,164,181,0.3);
+  border-radius: 8px; cursor: pointer; transition: all 0.3s; text-align: left; }
+.quiz-option:hover { background: rgba(244,164,181,0.1); border-color: var(--rose-deep); }
+.quiz-option.selected { background: var(--rose); color: white; border-color: var(--rose-deep); }
+.quiz-option.correct { background: #90EE90; border-color: #228B22; }
+.quiz-option.incorrect { background: #FFB6C6; border-color: #C41E3A; }
+.quiz-submit { padding: 0.8rem 2rem; background: var(--rose-deep); color: white; 
+  border: none; border-radius: 6px; cursor: pointer; font-size: 0.95rem; margin-top: 1rem; }
+.quiz-submit:hover { background: var(--rose); }
+.quiz-results { text-align: center; margin-top: 2rem; padding: 1.5rem; 
+  background: var(--light-pink); border-radius: 10px; }
+.quiz-score { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; 
+  color: var(--rose-deep); margin: 1rem 0; }
+
+#chat-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.5); display: none;
+  align-items: center; justify-content: center; z-index: 2000; }
+#chat-modal.open { display: flex; }
+.modal-card { background: var(--cream); border-radius: 12px; width: 90%; max-width: 600px;
+  max-height: 80vh; overflow: auto; padding: 2rem; }
+.modal-close { float: right; background: none; border: none; font-size: 1.5rem; 
+  cursor: pointer; color: var(--ink); }
+.msg { display: flex; gap: 0.8rem; margin: 1rem 0; }
+.avatar { width: 40px; height: 40px; border-radius: 50%; display: flex; 
+  align-items: center; justify-content: center; font-weight: 700; color: #fff;
+  flex-shrink: 0; }
+.bubble { padding: 0.8rem 1rem; border-radius: 10px; max-width: 70%; }
+.bubble-sender { background: linear-gradient(90deg, #ffe8f0, rgba(244,164,181,0.15)); }
+.bubble-receiver { background: #fff; }
+
+footer { padding: 3rem 2rem; text-align: center; color: #999; font-size: 0.85rem; }
+</style>
+</head>
+<body>
+
+<!-- INTRO OVERLAY -->
+<div id="intro">
+  <div class="intro-text">for the girl who changed everything</div>
+  <div class="intro-name">For Enhle</div>
+  <button class="intro-btn" id="enter-btn">Enter</button>
+</div>
+
+<!-- MAIN CONTENT -->
+<main id="main-content">
+
+  <!-- HERO -->
+  <section id="hero">
+    <div style="text-align: center;">
+      <div style="font-family: 'Cormorant Garamond', serif; color: var(--rose-deep); font-size: 0.9rem; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1rem;">A love letter</div>
+      <h1 class="hero-title">Why I Choose You</h1>
+      <p class="hero-sub">Every day, every moment, every reason why you matter to me. This is my letter of gratitude, written in our moments.</p>
+    </div>
+  </section>
+
+  <!-- LETTER -->
+  <section id="letter" class="section">
+    <div class="section-label">A letter — from Calvin</div>
+    <div class="letter-box">
+      <div id="typed-letter"></div>
+    </div>
+    <div style="text-align: center; margin-top: 1rem;">
+      <small style="color: var(--rose-deep);">— Calvin (Grade 10)</small>
+      <button class="tl-btn" id="sensitive-btn" style="margin-left: 1rem;">Hide sensitive (H)</button>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section id="timeline" class="section">
+    <div class="section-label">Our moments</div>
+    <div id="timeline-list"></div>
+  </section>
+
+  <!-- DISTANCE -->
+  <section id="distance" class="section">
+    <h2 class="section-title">Where we are</h2>
+    <p style="text-align: center; margin-bottom: 1.5rem;">Enhle: Grade 11 — Mpumalanga | Calvin: Grade 10 — Rustenburg</p>
+    <div class="distance-box">
+      <div class="distance-info">
+        <div style="font-weight: 600; color: var(--rose-deep);">Straight-line distance</div>
+        <div class="distance-value" id="distance-km"></div>
+        <small style="color: #5a3a32;">Between Rustenburg and Mpumalanga</small>
+      </div>
+      <div class="map-frame">
+        <iframe src="https://www.google.com/maps/dir/?api=1&origin=Rustenburg,South+Africa&destination=Mpumalanga,South+Africa&travelmode=driving" title="Map"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOVE CARDS -->
+  <section id="love" class="section">
+    <div class="section-label">Reasons I choose you</div>
+    <h2 class="section-title" style="color: var(--cream);">The vows of my heart</h2>
+    <div class="love-grid" id="love-list"></div>
+  </section>
+
+  <!-- COUNTER -->
+  <section id="counter">
+    <div class="section-label">Count</div>
+    <h2 class="section-title">Days with you (since 12 Jan 2026)</h2>
+    <div class="counter-num" id="counter-num">0</div>
+  </section>
+
+  <!-- SPOTIFY -->
+  <section id="spotify" class="section">
+    <div class="section-label">Music</div>
+    <h2 class="section-title" style="color: var(--cream);">Our song: Superpowers — Daniel Caesar</h2>
+    <div class="music-playing" style="color: var(--cream);">🎵 Playing in the background</div>
+  </section>
+
+  <!-- QUIZ -->
+  <section id="quiz" class="section">
+    <div class="section-label">A little test</div>
+    <h2 class="section-title">How well do you know our story?</h2>
+    <div class="quiz-container">
+      <div id="quiz-questions"></div>
+      <button class="quiz-submit" id="submit-btn">Submit Answers</button>
+      <div id="quiz-results" style="display: none;"></div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Made with love for Enhle. This is our story. 🌹</p>
+  </footer>
+
+</main>
+
+<!-- CHAT MODAL -->
+<div id="chat-modal">
+  <div class="modal-card">
+    <button class="modal-close" id="modal-close">✕</button>
+    <h3 id="chat-title" style="font-family: 'Cormorant Garamond', serif; color: var(--rose-deep); margin-bottom: 1rem;"></h3>
+    <div id="chat-body"></div>
+  </div>
+</div>
+
+<!-- AUDIO - BACKGROUND MUSIC -->
+<audio id="bg-audio" autoplay loop>
+  <source src="https://www.youtube.com/watch?v=rScwLoES2bM" type="audio/mpeg">
+</audio>
+
+<script>
+const SENDER = 'Calvin';
+const RECEIVER = 'Enhle';
+let showSensitive = false;
+let quizAnswers = {};
+
+const letterParagraphs = [
+  "Enhle,",
+  "I want to tell you why I choose you — not just today, but every day. It started on 12 Jan 2026 at 20:02 when I typed 'Heyy' and you answered with 'Heyyyy'. We talked until after midnight while you were unplaiting your braids, and in those hours, I felt something shift.",
+  "On your birthday, 21 Jan 2026, I stayed up writing you a letter because the words I needed to say deserved to be written down. I fell asleep finishing it, but when you read it, you cried — not from sadness, but from being seen. That's when I knew.",
+  "Later that day you joked about making it official before I even asked. You claimed me first, and I have never felt more wanted. When I asked on 1 Feb 2026, 'Do you wanna be my girlfriend?' your laugh told me everything.",
+  "But it wasn't just the good moments. On 17 Jun 2026, we hit a night so dark that we almost broke. I sent you a long letter from the deepest part of my heart, and you came back. You chose us. That taught me the real measure of love — it's not just the celebrations, it's choosing each other when it's hard.",
+  "You are in Grade 11 in Mpumalanga; I'm in Grade 10 in Rustenburg. The distance doesn't diminish what we have — it makes every moment we share feel more precious. I choose you across the distance, through the heavy nights, and in every tomorrow.",
+  "So this is my vow to you: I choose your growth. I choose your dreams. I choose to show up when you need me, to listen without trying to fix, to celebrate your wins like they're mine. I choose to keep writing letters, to stay up late talking, to laugh at our jokes that nobody else understands.",
+  "Thank you for being the girl who said 'Heyyyy' back. Thank you for loving me when I fell asleep, for forgiving me when I failed, and for believing in us when it was hard.",
+  "I love you more, Enhle. Always.",
+  "— Calvin"
+];
+
+const chatMoments = [
+  {id: 'm1', date: '12 Jan 2026 — 20:02', title: 'The First Hello', excerpt: 'You sent: "Heyy" · She replied: "Heyyyy". Everything started here.', messages: [{who: SENDER, time: '20:02', text: 'Heyy'}, {who: RECEIVER, time: '20:12', text: 'Heyyyy'}, {who: SENDER, time: '23:50', text: 'I enjoyed keeping you company while you unplaited your braids.'}]},
+  {id: 'm2', date: '21 Jan 2026 — 05:31', title: 'Your Birthday Letter', excerpt: 'A letter written from my heart on your special day.', messages: [{who: SENDER, time: '05:31', text: "Happy Birthday to the most beautiful, gorgeous, amazing girl I've ever met."}, {who: SENDER, time: '05:41', text: "I'm sorry I didn't send it @00:00 — I fell asleep writing it."}, {who: RECEIVER, time: '05:35', text: "Aw thank you sm 😭❤️ Don't make me cry now"}, {who: RECEIVER, time: '05:50', text: "Its okay I love it ❤️"}]},
+  {id: 'm3', date: '21 Jan 2026 — 22:28', title: "You Made It Official", excerpt: "You claimed me before I officially asked.", messages: [{who: SENDER, time:'22:28', text: "Let's make it official"}, {who: RECEIVER, time:'22:29', text: "You want a long distance relationship"}]},
+  {id: 'm4', date: '1 Feb 2026 — 19:58', title: 'The Official Ask', excerpt: 'I asked. You laughed. I knew.', messages: [{who: SENDER, time:'19:58', text: "Do you wanna be my girlfriend?"}, {who: RECEIVER, time:'20:06', text: "Am I not? What happened to the joke 😭😭😭"}, {who: SENDER, time:'20:19', text: "Mission successful 💕 You laughed 😭😭"}]},
+  {id: 'm5', date: '14 Feb 2026 — 00:02', title: "First Valentine's", excerpt: 'Our first Valentine\'s Day together.', messages: [{who: SENDER, time:'00:02', text: "Happy Valentine's day to my beautiful, amazing and gorgeous girlfriend 💕❤️"}]},
+  {id: 'm6', date: '17 Jun 2026 — early morning', title: 'We Chose Each Other', excerpt: 'A dark night where we almost broke, but we came back. (Sensitive)', sensitive: true, messages: [{who: RECEIVER, time:'~03:47', text: "Bye"}, {who: SENDER, time:'03:48', text: "It doesn't have to end like this... just give me one more chance to redeem myself"}, {who: SENDER, time:'04:50', text: "(I sent a long, deeply personal letter from my heart)"}, {who: RECEIVER, time:'10:05', text: "Amo... I saw your message and it's the sweetest thing you sent to me"}, {who: RECEIVER, time:'14:36', text: "I love you more ❤️"}]}
+];
+
+const quizQuestions = [
+  {
+    q: "What time did Calvin first text 'Heyy' on 12 Jan 2026?",
+    options: ["18:02", "20:02", "21:02", "19:02"],
+    correct: 1
+  },
+  {
+    q: "What was Enhle doing when they talked on the first night?",
+    options: ["Studying", "Sleeping", "Unplaiting her braids", "Watching a movie"],
+    correct: 2
+  },
+  {
+    q: "On what date did Enhle's birthday occur?",
+    options: ["20 Jan 2026", "21 Jan 2026", "22 Jan 2026", "19 Jan 2026"],
+    correct: 1
+  },
+  {
+    q: "When did Calvin officially ask 'Do you wanna be my girlfriend?'",
+    options: ["21 Jan 2026", "14 Feb 2026", "1 Feb 2026", "17 Jun 2026"],
+    correct: 2
+  }
+];
+
+// Initialize all event listeners on page load
+document.addEventListener('DOMContentLoaded', function() {
+  const enterBtn = document.getElementById('enter-btn');
+  const sensitiveBtn = document.getElementById('sensitive-btn');
+  const submitBtn = document.getElementById('submit-btn');
+  const modalClose = document.getElementById('modal-close');
+  
+  if(enterBtn) {
+    enterBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      hideIntro();
+    });
+  }
+  
+  if(sensitiveBtn) {
+    sensitiveBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      toggleSensitive();
+    });
+  }
+  
+  if(submitBtn) {
+    submitBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      submitQuiz();
+    });
+  }
+  
+  if(modalClose) {
+    modalClose.addEventListener('click', closeChat);
+  }
+  
+  document.addEventListener('keydown', function(e) {
+    if(e.key === 'H' || e.key === 'h') toggleSensitive();
+    if(e.key === 'Escape') closeChat();
+  });
+});
+
+function hideIntro() {
+  const intro = document.getElementById('intro');
+  const mainContent = document.getElementById('main-content');
+  
+  if(intro) intro.classList.add('hide');
+  if(mainContent) mainContent.classList.remove('hide');
+  
+  setTimeout(function() {
+    playMusic();
+    init();
+  }, 100);
+}
+
+function playMusic() {
+  try {
+    const audio = document.getElementById('bg-audio');
+    if(audio) {
+      audio.play().catch(function(e) {
+        console.log('Audio autoplay prevented:', e);
+      });
+    }
+  } catch(e) {
+    console.log('Music error:', e);
+  }
+}
+
+function init() {
+  typeLetterOnce();
+  renderTimeline();
+  renderLove();
+  renderQuiz();
+  updateCounter();
+  calcDistance();
+}
+
+function typeLetterOnce() {
+  const el = document.getElementById('typed-letter');
+  if(!el) return;
+  
+  let pi = 0, ci = 0;
+  function step() {
+    if(pi >= letterParagraphs.length) return;
+    const line = letterParagraphs[pi];
+    if(ci <= line.length) {
+      const before = letterParagraphs.slice(0, pi).join('\n\n');
+      el.textContent = (before ? before + '\n\n' : '') + line.slice(0, ci);
+      ci++;
+      setTimeout(step, 18 + Math.random() * 18);
+    } else {
+      pi++; ci = 0;
+      setTimeout(step, 220);
+    }
+  }
+  step();
+}
+
+function renderTimeline() {
+  const list = document.getElementById('timeline-list');
+  if(!list) return;
+  
+  list.innerHTML = '';
+  chatMoments.forEach(m => {
+    const isHidden = m.sensitive && !showSensitive;
+    const item = document.createElement('div');
+    item.className = 'tl-item';
+    item.innerHTML = `
+      <div class="tl-date">${m.date}</div>
+      <div class="tl-title">${m.title}</div>
+      <div class="tl-excerpt" id="excerpt-${m.id}">${isHidden ? '[Sensitive content hidden — press H]' : m.excerpt}</div>
+      <button class="tl-btn" data-chat-id="${m.id}">Read the moment</button>
+    `;
+    const btn = item.querySelector('.tl-btn');
+    if(btn) {
+      btn.addEventListener('click', function() {
+        openChat(m.id);
+      });
+    }
+    list.appendChild(item);
+  });
+}
+
+function renderLove() {
+  const grid = document.getElementById('love-list');
+  if(!grid) return;
+  
+  grid.innerHTML = '';
+  const reasons = [
+    "I choose your happiness over my comfort",
+    "I choose to listen when you need to be heard",
+    "I choose to celebrate your dreams like they're mine",
+    "I choose to show up, even when it's hard",
+    "I choose to laugh with you at 3 AM",
+    "I choose to be patient with your doubts",
+  ];
+  reasons.forEach((reason, i) => {
+    const card = document.createElement('div');
+    card.className
